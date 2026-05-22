@@ -1,6 +1,4 @@
 <script setup>
-import { ref } from 'vue'
-
 const props = defineProps({
   totalParticipants: Number,
   prizes: Array
@@ -14,7 +12,7 @@ const onTotalChange = (e) => {
 
 const addPrize = () => {
   const newId = props.prizes.length > 0 ? Math.max(...props.prizes.map(p => p.id)) + 1 : 1
-  props.prizes.push({ id: newId, name: '新奖品', count: 1, perDraw: 1 })
+  props.prizes.push({ id: newId, name: '新奖项', count: 1, perDraw: 1 })
 }
 
 const removePrize = (index) => {
@@ -28,13 +26,13 @@ const confirmAndStart = () => {
 
 <template>
   <div class="glass-panel">
-    <h1>🎉 婚礼抽奖系统 🎉</h1>
-    
+    <h1>婚礼抽奖系统</h1>
+
     <div class="form-group">
       <label>参与总人数</label>
-      <input 
-        type="number" 
-        :value="totalParticipants" 
+      <input
+        type="number"
+        :value="totalParticipants"
         @input="onTotalChange"
         min="1"
       />
@@ -47,14 +45,14 @@ const confirmAndStart = () => {
           + 添加奖项
         </button>
       </div>
-      
+
       <div v-for="(prize, index) in prizes" :key="prize.id" class="prize-item">
         <div class="prize-inputs" style="flex-wrap: wrap; gap: 0.5rem; align-items: center;">
-          <input type="text" v-model="prize.name" placeholder="奖项名称(如:一等奖)" style="flex: 2; min-width: 120px;" />
+          <input type="text" v-model="prize.name" placeholder="奖项名称（如：一等奖）" style="flex: 2; min-width: 120px;" />
           <div style="display: flex; gap: 0.5rem; flex: 2; align-items: center; background: rgba(0,0,0,0.2); padding: 0.5rem; border-radius: 8px;">
-            <span style="font-size: 0.85rem; color: #ccc; white-space: nowrap;">总名额:</span>
+            <span style="font-size: 0.85rem; color: #ccc; white-space: nowrap;">总名额</span>
             <input type="number" v-model="prize.count" min="1" style="width: 60px; padding: 0.5rem; background: rgba(0,0,0,0.3);" />
-            <span style="font-size: 0.85rem; color: #ccc; white-space: nowrap; margin-left: 0.5rem;">每次抽:</span>
+            <span style="font-size: 0.85rem; color: #ccc; white-space: nowrap; margin-left: 0.5rem;">每次抽</span>
             <input type="number" v-model="prize.perDraw" min="1" style="width: 60px; padding: 0.5rem; background: rgba(0,0,0,0.3);" />
           </div>
         </div>
@@ -63,7 +61,7 @@ const confirmAndStart = () => {
     </div>
 
     <button class="btn btn-primary" style="margin-top: 1rem; padding: 1rem; font-size: 1.2rem;" @click="confirmAndStart">
-      进入抽奖大屏
+      进入抽奖
     </button>
   </div>
 </template>
